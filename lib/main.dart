@@ -3,6 +3,7 @@ import 'package:booksy_app/categories/categories_screen.dart';
 import 'package:booksy_app/firebase_options.dart';
 import 'package:booksy_app/state.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:booksy_app/home/home_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -44,10 +45,32 @@ class BooksyApp extends StatelessWidget {
   }
 }
 
-void initNotifications(BuildContext context) async {
+void initNotifications(BuildContext context, mounted) async {
+  await initLocalNotifications(context);
+  await initPushNotifications();
+  await startReadingReminder();
+}
+
+Future<void> initPushNotifications() async {
+  var fcmToken = await FirebaseMessaging.instance.getToken();
+  debugPrint(fcmToken);
+  FirebaseMessaging.onMessage.listen(_onRemoteMessageReceived);
+  FirebaseMessaging.onBackgroundMessage(_onBackgroundMessageReceived);
+}
+
+Future<void> _onBackgroundMessageReceived(RemoteMessage message) async {
+  debugPrint('${message.notification!.title}: ${message.notification!.body}');
+}
+
+void _onRemoteMessageReceived(RemoteMessage message) {
+  debugPrint('${message.notification!.title}: ${message.notification!.body}');
+  _showNotification(message.notification!.title ?? 'Sin titulo',
+      message.notification!.body ?? 'Sin body');
+}
+
+Future<void> initLocalNotifications(BuildContext context) async {
   FlutterLocalNotificationsPlugin notifications =
       FlutterLocalNotificationsPlugin();
-
   DarwinInitializationSettings iosSettings = DarwinInitializationSettings(
       onDidReceiveLocalNotification: (id, title, body, payload) {});
   AndroidInitializationSettings androidSettings =
@@ -72,16 +95,14 @@ void initNotifications(BuildContext context) async {
       ),
     );
   });
-  startReadingReminder();
 }
 
-void startReadingReminder() {
-  Future.delayed(const Duration(seconds: 4), () {
-    _showNotification();
-  });
+Future<void> startReadingReminder() async {
+  await Future.delayed(const Duration(seconds: 4));
+  _showNotification('Local notification', 'Body local notification');
 }
 
-void _showNotification() {
+void _showNotification(String title, String body) {
   FlutterLocalNotificationsPlugin notifications =
       FlutterLocalNotificationsPlugin();
   const AndroidNotificationDetails androidDetails = AndroidNotificationDetails(
@@ -93,8 +114,8 @@ void _showNotification() {
   );
   notifications.show(
     1,
-    'Notificación',
-    'Cuerpo de la notificación',
+    title,
+    body,
     const NotificationDetails(android: androidDetails),
     payload: "20",
   );
@@ -116,7 +137,7 @@ class _BottomNavigatorWidgetState extends State<BottomNavigatorWidget> {
   ];
   @override
   Widget build(BuildContext context) {
-    initNotifications(context);
+    initNotifications(context, mounted);
     return Scaffold(
       appBar: AppBar(title: const Text("Booksy")),
       body: _sections[_selectedIndex],

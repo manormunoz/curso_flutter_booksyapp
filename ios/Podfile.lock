@@ -614,11 +614,18 @@ PODS:
   - Firebase/Firestore (10.1.0):
     - Firebase/CoreOnly
     - FirebaseFirestore (~> 10.1.0)
+  - Firebase/Messaging (10.1.0):
+    - Firebase/CoreOnly
+    - FirebaseMessaging (~> 10.1.0)
   - Firebase/Storage (10.1.0):
     - Firebase/CoreOnly
     - FirebaseStorage (~> 10.1.0)
   - firebase_core (2.2.0):
     - Firebase/CoreOnly (= 10.1.0)
+    - Flutter
+  - firebase_messaging (14.1.0):
+    - Firebase/Messaging (= 10.1.0)
+    - firebase_core
     - Flutter
   - firebase_storage (11.0.5):
     - Firebase/Storage (= 10.1.0)
@@ -647,6 +654,20 @@ PODS:
     - "gRPC-C++ (~> 1.44.0)"
     - leveldb-library (~> 1.22)
     - nanopb (< 2.30910.0, >= 2.30908.0)
+  - FirebaseInstallations (10.1.0):
+    - FirebaseCore (~> 10.0)
+    - GoogleUtilities/Environment (~> 7.8)
+    - GoogleUtilities/UserDefaults (~> 7.8)
+    - PromisesObjC (~> 2.1)
+  - FirebaseMessaging (10.1.0):
+    - FirebaseCore (~> 10.0)
+    - FirebaseInstallations (~> 10.0)
+    - GoogleDataTransport (~> 9.2)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.8)
+    - GoogleUtilities/Environment (~> 7.8)
+    - GoogleUtilities/Reachability (~> 7.8)
+    - GoogleUtilities/UserDefaults (~> 7.8)
+    - nanopb (< 2.30910.0, >= 2.30908.0)
   - FirebaseStorage (10.1.0):
     - FirebaseAppCheckInterop (~> 10.0)
     - FirebaseAuthInterop (~> 10.0)
@@ -656,11 +677,27 @@ PODS:
   - Flutter (1.0.0)
   - flutter_local_notifications (0.0.1):
     - Flutter
+  - GoogleDataTransport (9.2.0):
+    - GoogleUtilities/Environment (~> 7.7)
+    - nanopb (< 2.30910.0, >= 2.30908.0)
+    - PromisesObjC (< 3.0, >= 1.2)
+  - GoogleUtilities/AppDelegateSwizzler (7.8.0):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
   - GoogleUtilities/Environment (7.8.0):
     - PromisesObjC (< 3.0, >= 1.2)
   - GoogleUtilities/Logger (7.8.0):
     - GoogleUtilities/Environment
+  - GoogleUtilities/Network (7.8.0):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Reachability
   - "GoogleUtilities/NSData+zlib (7.8.0)"
+  - GoogleUtilities/Reachability (7.8.0):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/UserDefaults (7.8.0):
+    - GoogleUtilities/Logger
   - "gRPC-C++ (1.44.0)":
     - "gRPC-C++/Implementation (= 1.44.0)"
     - "gRPC-C++/Interface (= 1.44.0)"
@@ -731,6 +768,7 @@ DEPENDENCIES:
   - camera_avfoundation (from `.symlinks/plugins/camera_avfoundation/ios`)
   - cloud_firestore (from `.symlinks/plugins/cloud_firestore/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
+  - firebase_messaging (from `.symlinks/plugins/firebase_messaging/ios`)
   - firebase_storage (from `.symlinks/plugins/firebase_storage/ios`)
   - Flutter (from `Flutter`)
   - flutter_local_notifications (from `.symlinks/plugins/flutter_local_notifications/ios`)
@@ -746,7 +784,10 @@ SPEC REPOS:
     - FirebaseCoreExtension
     - FirebaseCoreInternal
     - FirebaseFirestore
+    - FirebaseInstallations
+    - FirebaseMessaging
     - FirebaseStorage
+    - GoogleDataTransport
     - GoogleUtilities
     - "gRPC-C++"
     - gRPC-Core
@@ -763,6 +804,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/cloud_firestore/ios"
   firebase_core:
     :path: ".symlinks/plugins/firebase_core/ios"
+  firebase_messaging:
+    :path: ".symlinks/plugins/firebase_messaging/ios"
   firebase_storage:
     :path: ".symlinks/plugins/firebase_storage/ios"
   Flutter:
@@ -777,6 +820,7 @@ SPEC CHECKSUMS:
   cloud_firestore: 345ab5f423db6ae492abb648372156bdccb9df42
   Firebase: 444b35a9c568a516666213c2f6cccd10cb12559f
   firebase_core: d2242c6f318db1d0dcecfbfa491e943337b0d755
+  firebase_messaging: 59f435c4cd0d5448e7268a7f70bce9b1287c1742
   firebase_storage: 4469fac809e7f0ac7bc01455f515b409718398a4
   FirebaseAppCheckInterop: 53eec3c354a95f8fe6ff947dd9518ea17f624914
   FirebaseAuthInterop: 15b2c717321d5e46a60562e388c4d1b039ea7e28
@@ -784,9 +828,12 @@ SPEC CHECKSUMS:
   FirebaseCoreExtension: 69b966c399abc4ca6dc75006ab87160f81512725
   FirebaseCoreInternal: 96d75228e10fd369564da51bd898414eb0f54df5
   FirebaseFirestore: d482e5e0f95dba8ef5d499a7efa87ba2f56ef0c0
+  FirebaseInstallations: 99d24bac0243cf8b0e96cf5426340d211f0bcc80
+  FirebaseMessaging: 4487bbff9b9b927ba1dd3ea40d1ceb58e4ee3cb5
   FirebaseStorage: 132c10c4d2f8ed8afbfa918eb35d19a87f383d59
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   flutter_local_notifications: 0c0b1ae97e741e1521e4c1629a459d04b9aec743
+  GoogleDataTransport: 1c8145da7117bd68bbbed00cf304edb6a24de00f
   GoogleUtilities: 1d20a6ad97ef46f67bbdec158ce00563a671ebb7
   "gRPC-C++": 9675f953ace2b3de7c506039d77be1f2e77a8db2
   gRPC-Core: 943e491cb0d45598b0b0eb9e910c88080369290b
