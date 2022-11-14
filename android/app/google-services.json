@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "241289800924",
+    "project_id": "booksy-app-b5703",
+    "storage_bucket": "booksy-app-b5703.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:241289800924:android:ffd9e6b196020553459819",
+        "android_client_info": {
+          "package_name": "mx.manor.booksy_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "241289800924-1cu8glgboq8s6apnsfu4ktugrna61gem.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCni5p8wxyO37kqihXNeFqwDOJIymw9524"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "241289800924-1cu8glgboq8s6apnsfu4ktugrna61gem.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "241289800924-kg7lqj8jmitdb6cjcqa5ti4i8t761s3e.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "mx.manor.booksyApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
